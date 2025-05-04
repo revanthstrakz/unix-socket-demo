@@ -10,10 +10,8 @@ const nextConfig: NextConfig = {
     
     return config;
   },
-  // Enable experimental features for Node.js APIs
-  experimental: {
-    serverComponentsExternalPackages: ['node-fetch', 'undici']
-  }
+  // External packages configuration
+  serverExternalPackages: ['node-fetch', 'undici']
 };
 
 export default nextConfig;

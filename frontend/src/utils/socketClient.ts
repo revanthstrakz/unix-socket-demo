@@ -1,7 +1,6 @@
 import { Agent } from 'undici';
 import nodeFetch from 'node-fetch';
 import * as os from 'os';
-import * as path from 'path';
 
 // Platform-specific socket path
 const getSocketPath = () => {
@@ -30,7 +29,7 @@ export const fetchFromBackend = async (apiPath: string) => {
       });
 
       const response = await nodeFetch(`http://localhost${apiPath}`, {
-        // @ts-ignore - Type issue with undici and node-fetch compatibility
+        // @ts-expect-error - Type issue with undici and node-fetch compatibility
         dispatcher: agent,
       });
 
