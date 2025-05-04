@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      # For Unix socket communication (Linux/macOS)
+      - socket-volume:/tmp
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      # For Unix socket communication (Linux/macOS)
+      - socket-volume:/tmp
+    environment:
+      - SOCKET_PATH=/tmp/go.sock
+
+volumes:
+  socket-volume:
